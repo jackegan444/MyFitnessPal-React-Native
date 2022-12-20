@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppRegistry, Text, View, StyleSheet, TouchableHighlight, Dimensions, StatusBar, TextInput, Linking, Image } from 'react-native';
 import styles from './styles';
-import { firebase } from '../../firebase/config'
+import { firebase } from '../../firebase/config';
 
 export default function LoginScreen({navigation}) {
 
@@ -27,10 +27,6 @@ export default function LoginScreen({navigation}) {
                     .doc(uid)
                     .get()
                     .then(firestoreDocument => {
-                        if (!firestoreDocument.exists) {
-                            alert("User does not exist anymore.")
-                            return;
-                        }
                         const user = firestoreDocument.data()
                         navigation.navigate('Fitness Home')
                     })
@@ -46,9 +42,9 @@ export default function LoginScreen({navigation}) {
     return (
         <View>
             <View style={styles.containerLI}>
-            
+
                 <View style = {styles.bodyLI}>
-                
+
                     <View style = {styles.headerLI}>
                         <TouchableHighlight style={styles.backButton}
                         onPress={() => handleMainPagePress()}
@@ -64,14 +60,14 @@ export default function LoginScreen({navigation}) {
                         onChangeText={(email) => setEmail(email)}
                         value={email}
                      />
-                     
+
                     <TextInput secureTextEntry={true} style={styles.inputContainerLI}
                         placeholder="Password"
                         onChangeText={(password) => setPassword(password)}
                         value={password}
                      />
-                    
-                    <TouchableHighlight 
+
+                    <TouchableHighlight
                     onPress={() => onLoginPress()}
                     >
                     <View style = {styles.loginButtonLI}>
@@ -80,16 +76,16 @@ export default function LoginScreen({navigation}) {
                         </Text>
                     </View>
                     </TouchableHighlight>
-                    
+
                     <Text style = {styles.forgotTextLI}  onPress={() => Linking.openURL('https://www.myfitnesspal.com/account/forgot-password')}>
                         Forgot password?
                     </Text>
-                    
+
                     <Text style = {styles.grayTextLI}>
                        ─────────  OR  ─────────
                     </Text>
-                    
-                    <TouchableHighlight 
+
+                    <TouchableHighlight
                     onPress={() => handleHomePagePress()}
                     >
                     <View style = {styles.otherLoginButtonLI}>
@@ -98,8 +94,8 @@ export default function LoginScreen({navigation}) {
                         </Text>
                     </View>
                     </TouchableHighlight>
-                    
-                    <TouchableHighlight 
+
+                    <TouchableHighlight
                     onPress={() => handleHomePagePress()}
                     >
                     <View style = {styles.otherLoginButtonLI}>
@@ -108,7 +104,7 @@ export default function LoginScreen({navigation}) {
                         </Text>
                     </View>
                     </TouchableHighlight>
-                    
+
                     <Text style = {styles.grayTextLI}>
                        We will never post anything without your permission.
                     </Text>

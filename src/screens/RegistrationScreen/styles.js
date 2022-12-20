@@ -41,19 +41,18 @@ export default StyleSheet.create({
         marginTop: deviceHeight / 45,
         marginBottom: deviceHeight / 50,
         color: 'white',
-        fontWeight: 'bold', 
+        fontWeight: 'bold',
         fontSize: deviceWidth / 20,
         marginLeft:50,
     },
-    
+
     sloganTextSU: {
         marginTop: deviceHeight / 45,
         marginBottom: deviceHeight / 50,
         color: 'white',
-        fontWeight: 'bold', 
-        fontSize: deviceWidth / 20,
+        fontSize: deviceWidth / 28,
     },
-    
+
     progressBarSU: {
         flexDirection: 'row',
         marginTop: deviceHeight / 50,
@@ -109,4 +108,18 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: deviceWidth / 25,
     },
+    inputContainerLI:{
+        fontSize: deviceHeight/35,
+        color:'gray',
+        borderColor: '#262938',
+        borderWidth:2,
+        borderRadius:2,
+        height:deviceHeight/15,
+        width:deviceHeight/1.95,
+        backgroundColor:'#161823',
+        margin: 5,
+    },
+    mainContainerSU: {
+      height: (7*deviceHeight)/10,
+    }
 })
