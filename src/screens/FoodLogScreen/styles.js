@@ -107,9 +107,19 @@ export default StyleSheet.create({
     innerMealRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         backgroundColor: 'white',
         width: deviceWidth * 0.95,
         borderRadius: 10
+    },
+
+    calInput: {
+        marginLeft: deviceHeight/50,
+        marginRight: deviceHeight/50,
+        width: deviceWidth/9,
+        fontSize: deviceWidth / 20,
+        backgroundColor: 'grey',
+        borderRadius: 10,
+        paddingLeft: 3
     }
 })

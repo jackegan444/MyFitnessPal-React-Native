@@ -75,12 +75,14 @@ export default function RegistrationScreen({navigation}) {
 
                       <TextInput style={styles.inputContainerLI}
                           placeholder="Email Address"
+                          placeholderTextColor='grey'
                           onChangeText={(email) => setEmail(email)}
                           value={email}
                        />
 
                       <TextInput secureTextEntry={true} style={styles.inputContainerLI}
                           placeholder="Password"
+                          placeholderTextColor='grey'
                           onChangeText={(password) => setPassword(password)}
                           value={password}
                        />

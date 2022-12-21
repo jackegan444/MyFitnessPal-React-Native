@@ -8,11 +8,43 @@ let deviceWidth = Dimensions.get('window').width;
 export default function FoodLogScreen({navigation}) {
 
     const [caloriesConsumed, setCaloriesConsumed] = useState(0)
-    const [caloriesBurned, setCaloriesBurned] = useState(0)
     const [remainingCalories, setRemainingCalories] = useState(2000)
+    const [breakfastItem, setBreakfastItem] = useState(0)
+    const [breakfastCalories, setBreakfastCalories] = useState(0)
+    const [lunchItem, setLunchItem] = useState(0)
+    const [lunchCalories, setLunchCalories] = useState(0)
+    const [dinnerItem, setDinnerItem] = useState(0)
+    const [dinnerCalories, setDinnerCalories] = useState(0)
+    const [snackItem, setSnackItem] = useState(0)
+    const [snackCalories, setSnackCalories] = useState(0)
 
     const handleFitnessPagePress = () => {
         navigation.navigate('MainPage')
+    }
+
+    const updateBreakfast = () => {
+        setBreakfastCalories(breakfastCalories + parseInt(breakfastItem))
+        updateTotals(breakfastItem)
+    }
+
+    const updateLunch = () => {
+        setLunchCalories(lunchCalories + parseInt(lunchItem))
+        updateTotals(lunchItem)
+    }
+
+    const updateDinner = () => {
+        setDinnerCalories(dinnerCalories + parseInt(dinnerItem))
+        updateTotals(dinnerItem)
+    }
+
+    const updateSnack = () => {
+        setSnackCalories(snackCalories + parseInt(snackItem))
+        updateTotals(snackItem)
+    }
+
+    const updateTotals = (newItem) => {
+        setCaloriesConsumed(caloriesConsumed + parseInt(newItem))
+        setRemainingCalories(remainingCalories - newItem)
     }
 
     return (
@@ -54,23 +86,10 @@ export default function FoodLogScreen({navigation}) {
                         
                         <View style = {styles.logCol}>
                             <Text style = {styles.logFont}>
-                                0
+                                {caloriesConsumed}
                             </Text>
                             <Text style = {styles.logSubFont}>
                                 Food
-                            </Text>
-                        </View>
-                        
-                        <Text style = {styles.logFont}>
-                            +
-                        </Text>
-                        
-                        <View style = {styles.logCol}>
-                            <Text style = {styles.logFont}>
-                                0
-                            </Text>
-                            <Text style = {styles.logSubFont}>
-                                Exercise
                             </Text>
                         </View>
                         
@@ -80,7 +99,7 @@ export default function FoodLogScreen({navigation}) {
                         
                         <View style = {styles.logCol}>
                             <Text style = {styles.logFont}>
-                                0
+                                {remainingCalories}
                             </Text>
                             <Text style = {styles.logSubFont}>
                                 Remaining
@@ -95,17 +114,26 @@ export default function FoodLogScreen({navigation}) {
                                 Breakfast
                             </Text>
                             <Text style = {styles.logFontBlack}>
-                                0
+                                {breakfastCalories}
                             </Text>
                         </View>
                         <View style = {styles.innerMealRow}>
-                            <Text style = {styles.addFoodFont}>
-                                ADD FOOD
-                            </Text>
-                            <Image
-                                source={{ uri: 'https://codehs.com/uploads/af4dcc14f358dbb2f23f54c83ec935ab' }}
-                                style={{ height: deviceHeight/20, width: deviceWidth/13, marginRight: 5  }}
+                            <TextInput style = {styles.calInput}
+                                placeholder="0"
+                                keyboardType = 'numeric'
+                                placeholderTextColor='black'
+                                onChangeText={(item) => {
+                                    setBreakfastItem(item)}
+                                }
+                                value={breakfastItem}
                             />
+                            <TouchableHighlight
+                                onPress={() => updateBreakfast()}
+                            >
+                                <Text style = {styles.addFoodFont}>
+                                    ADD FOOD
+                                </Text>
+                            </TouchableHighlight>
                         </View>
                     </View>
                     
@@ -115,17 +143,24 @@ export default function FoodLogScreen({navigation}) {
                                 Lunch
                             </Text>
                             <Text style = {styles.logFontBlack}>
-                                0
+                                {lunchCalories}
                             </Text>
                         </View>
                         <View style = {styles.innerMealRow}>
-                            <Text style = {styles.addFoodFont}>
-                                ADD FOOD
-                            </Text>
-                            <Image
-                                source={{ uri: 'https://codehs.com/uploads/af4dcc14f358dbb2f23f54c83ec935ab' }}
-                                style={{ height: deviceHeight/20, width: deviceWidth/13, marginRight: 5  }}
-                            />
+                            <TextInput style = {styles.calInput}
+                                    placeholder="0"
+                                    keyboardType = 'numeric'
+                                    placeholderTextColor='black'
+                                    onChangeText={(item) => setLunchItem(item)}
+                                    value={lunchItem}
+                                />
+                                <TouchableHighlight
+                                    onPress={() => updateLunch()}
+                                >
+                                    <Text style = {styles.addFoodFont}>
+                                        ADD FOOD
+                                    </Text>
+                                </TouchableHighlight>
                         </View>
                     </View>
                     
@@ -135,17 +170,24 @@ export default function FoodLogScreen({navigation}) {
                                 Dinner
                             </Text>
                             <Text style = {styles.logFontBlack}>
-                                0
+                                {dinnerCalories}
                             </Text>
                         </View>
                         <View style = {styles.innerMealRow}>
-                            <Text style = {styles.addFoodFont}>
-                                ADD FOOD
-                            </Text>
-                            <Image
-                                source={{ uri: 'https://codehs.com/uploads/af4dcc14f358dbb2f23f54c83ec935ab' }}
-                                style={{ height: deviceHeight/20, width: deviceWidth/13, marginRight: 5  }}
-                            />
+                        <TextInput style = {styles.calInput}
+                                    placeholder="0"
+                                    keyboardType = 'numeric'
+                                    placeholderTextColor='black'
+                                    onChangeText={(item) => setDinnerItem(item)}
+                                    value={dinnerItem}
+                                />
+                                <TouchableHighlight
+                                    onPress={() => updateDinner()}
+                                >
+                                    <Text style = {styles.addFoodFont}>
+                                        ADD FOOD
+                                    </Text>
+                                </TouchableHighlight>
                         </View>
                     </View>
                     
@@ -155,17 +197,24 @@ export default function FoodLogScreen({navigation}) {
                                 Snacks
                             </Text>
                             <Text style = {styles.logFontBlack}>
-                                0
+                                {snackCalories}
                             </Text>
                         </View>
                         <View style = {styles.innerMealRow}>
-                            <Text style = {styles.addFoodFont}>
-                                ADD FOOD
-                            </Text>
-                            <Image
-                                source={{ uri: 'https://codehs.com/uploads/af4dcc14f358dbb2f23f54c83ec935ab' }}
-                                style={{ height: deviceHeight/20, width: deviceWidth/13, marginRight: 5  }}
-                            />
+                        <TextInput style = {styles.calInput}
+                                    placeholder="0"
+                                    keyboardType = 'numeric'
+                                    placeholderTextColor='black'
+                                    onChangeText={(item) => setSnackItem(item)}
+                                    value={snackItem}
+                                />
+                                <TouchableHighlight
+                                    onPress={() => updateSnack()}
+                                >
+                                    <Text style = {styles.addFoodFont}>
+                                        ADD FOOD
+                                    </Text>
+                                </TouchableHighlight>
                         </View>
                     </View>
                       
